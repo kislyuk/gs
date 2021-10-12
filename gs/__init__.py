@@ -85,7 +85,7 @@ class GSClient:
             self._service_jwt = jwt.encode(payload,
                                            self.config.service_credentials["private_key"],
                                            headers=additional_headers,
-                                           algorithm='RS256').decode()
+                                           algorithm='RS256')
         return self._service_jwt
 
     def request(self, method, resource, **kwargs):
