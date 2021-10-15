@@ -1,3 +1,10 @@
+Changes for v1.1.0 (2021-10-14)
+===============================
+
+-  Update dependencies
+
+-  Document anonymous mode
+
 Changes for v1.0.0 (2020-07-15)
 ===============================
 
