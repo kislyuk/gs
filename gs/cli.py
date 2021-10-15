@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 
-import os, sys, json, textwrap, logging, fnmatch, mimetypes, datetime, time, base64, hashlib, concurrent.futures
+import os, sys, json, textwrap, logging, mimetypes, datetime, time, base64, hashlib, concurrent.futures
 from argparse import Namespace
 
-import click, tweak, requests
+import click, requests
 from dateutil.parser import parse as dateutil_parse
 
 from . import GSClient, GSUploadClient, GSBatchClient, logger
 from .util import Timestamp, CRC32C, get_file_size, format_http_errors, batches
-from .util.compat import makedirs, cpu_count
-from .util.printing import page_output, tabulate, GREEN, BLUE, BOLD, format_number, get_progressbar
+from .util.printing import page_output, tabulate, BOLD, format_number, get_progressbar
 from .version import __version__
 
 @click.group()
@@ -351,7 +350,7 @@ def batch_delete_prefix(bucket, prefix, max_workers, dryrun=False, recurse_into_
 @click.argument('paths', nargs=-1, required=True)
 @click.option("--recursive", is_flag=True,
               help="If a given path is a directory (prefix), delete all objects sharing that prefix.")
-@click.option("--max-workers", type=int, default=cpu_count(),
+@click.option("--max-workers", type=int, default=os.cpu_count(),
               help="Limit batch delete concurrency to this many threads (default: number of CPU cores detected)")
 @click.option("--dryrun", is_flag=True, help="List the operations that would run without actually running them.")
 @format_http_errors
@@ -391,7 +390,7 @@ cli.add_command(rm)
 
 @click.command()
 @click.argument('paths', nargs=2, required=True)
-@click.option("--max-workers", type=int, default=cpu_count(),
+@click.option("--max-workers", type=int, default=os.cpu_count(),
               help="Limit upload/download concurrency to this many threads (default: number of CPU cores detected)")
 @format_http_errors
 def sync(paths, max_workers=None):
@@ -416,7 +415,7 @@ def sync(paths, max_workers=None):
                         continue
                 except OSError:
                     pass
-                makedirs(os.path.dirname(local_path), exist_ok=True)
+                os.makedirs(os.path.dirname(local_path), exist_ok=True)
                 futures.append(threadpool.submit(download_one_file, bucket, remote_object["name"], local_path))
         elif dest.startswith("gs://") and not src.startswith("gs://"):
             bucket, prefix = parse_bucket_and_prefix(dest)

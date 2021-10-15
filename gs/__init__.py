@@ -1,7 +1,7 @@
-import os, sys, json, datetime, logging, base64, threading
+import os, json, datetime, logging, base64
+from threading import get_ident
 
 from gs.util.exceptions import NoServiceCredentials
-from gs.util.compat import get_ident
 
 import requests, tweak
 from requests.adapters import HTTPAdapter

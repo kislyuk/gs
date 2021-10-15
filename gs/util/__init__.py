@@ -1,11 +1,9 @@
-import os, sys, struct, warnings, functools
+import os, struct, functools
 from datetime import datetime
 
 from dateutil.parser import parse as dateutil_parse
 from dateutil.relativedelta import relativedelta
 import requests.exceptions
-
-from .compat import USING_PYTHON2
 
 class Timestamp(datetime):
     """
@@ -42,8 +40,6 @@ class CRC32C:
 
 def long_to_bytes(n):
     s = b''
-    if USING_PYTHON2:
-        n = long(n)  # noqa
     pack = struct.pack
     while n > 0:
         s = pack(b'>I', n & 0xffffffff) + s

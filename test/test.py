@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import os, sys, unittest, uuid, tempfile, time, logging
-
-from gs.util.compat import TemporaryDirectory
+import os, unittest, tempfile, time, logging
+from tempfile import TemporaryDirectory
 
 import gs, tweak
 from gs import cli
-
-from gs.util.compat import USING_PYTHON2
 
 logging.basicConfig(level=logging.DEBUG)
 

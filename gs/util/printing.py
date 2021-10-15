@@ -1,15 +1,17 @@
-# coding: utf-8
-from __future__ import absolute_import, division, print_function, unicode_literals
-
-import os, sys, json, shutil, subprocess, re, errno, threading
+import os, sys, json, subprocess, re, errno, threading
+from shutil import get_terminal_size
 from datetime import datetime, timedelta
+
 import click
+
 from .exceptions import GetFieldError, GSException
-from .compat import str, get_terminal_size, thread_is_main
 
 USING_PYTHON2 = True if sys.version_info < (3, 0) else False
 
 ANSI_OK = True if sys.stdout.isatty() and os.name != "nt" else False
+
+def thread_is_main():
+    return True if threading.current_thread() is threading.main_thread() else False
 
 def CYAN(message=None):
     if message is None:
