@@ -36,6 +36,8 @@ release:
 	    if [[ -f Changes.rst ]]; then cat <(pandoc --from markdown --to rst $$TAG_MSG) <(echo) Changes.rst | sponge Changes.rst; git add Changes.rst; fi; \
 	    git commit -m ${TAG}; \
 	    git tag --sign --annotate --file $$TAG_MSG ${TAG}
+	$(MAKE) version
+	git add $$(python setup.py --name)/version.py
 	git push --follow-tags
 	http --check-status --auth ${GH_AUTH} ${RELEASES_API} tag_name=${TAG} name=${TAG} \
 	    body="$$(git tag --list ${TAG} -n99 | perl -pe 's/^\S+\s*// if $$. == 1' | sed 's/^\s\s\s\s//')"
