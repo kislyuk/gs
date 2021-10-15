@@ -1,11 +1,11 @@
 import os, json, datetime, logging, base64
 from threading import get_ident
 
-from gs.util.exceptions import NoServiceCredentials
-
 import requests, tweak
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util import retry
+
+from .util.exceptions import NoServiceCredentials
 
 logger = logging.getLogger(__name__)
 
