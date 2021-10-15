@@ -2,10 +2,13 @@ GS: A minimalistic Google Storage client
 ========================================
 
 *gs* is a command line interface (CLI) and Python library that provides a set of essential commands for
-`Google Cloud Storage <https://cloud.google.com/storage/>`_. It is modeled after the AWS CLI's ``aws s3`` command. Its
-features are:
+`Google Cloud Storage <https://cloud.google.com/storage/>`_. It is modeled after the AWS CLI's ``aws s3`` command.
 
-* Python 3 compatibility
+*gs* was first developed in 2018 when Google Cloud's SDKs still did not support Python 3, and were not modular so
+developers had to install gigabytes of additional libraries to do something as simple as talking to Google Storage.
+Since then, the SDKs have improved, but *gs* remains small, fast, and useful as a reference implementation of a
+standalone Google Cloud API client with full support for crc32c checksum composition. Its features are:
+
 * A minimalistic set of dependencies
 * A tiny footprint
 * Intuitive convention-driven configuration of API credentials without browser login prompts
