@@ -18,12 +18,6 @@ build: version
 install: clean build
 	pip install --upgrade dist/*.whl
 
-init_docs:
-	cd docs; sphinx-quickstart
-
-docs:
-	$(MAKE) -C docs html
-
 clean:
 	-rm -rf build dist
 	-rm -rf *.egg-info
