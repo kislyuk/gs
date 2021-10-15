@@ -1,3 +1,8 @@
+Changes for v1.1.1 (2021-10-14)
+===============================
+
+-  Manage version in release script
+
 Changes for v1.1.0 (2021-10-14)
 ===============================
 

@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gs',
-    version='1.1.0',
+    version='1.1.1',
     url='https://github.com/kislyuk/gs',
     license='MIT License',
     author='Andrey Kislyuk',
